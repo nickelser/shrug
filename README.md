@@ -1,4 +1,4 @@
-# ¯\_(ツ)_/¯
+# ¯\\_(ツ)_/¯
 
 A warm comforting blanket around all your objects. Any undefined method on nil will report an exception using [robustly](https://github.com/ankane/robustly/).
 
