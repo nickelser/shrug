@@ -8,9 +8,14 @@ module Shrug
     return if WHITELIST.include?(method.to_s)
 
     STDERR.puts("¯\\_(ツ)_/¯ (`#{method.to_s}' undefined)")
-    Robustly.report_exception(NoMethodError.new("undefined method `#{method}' for nil:NilClass (¯\\_(ツ)_/¯)"))
 
-    self # magic happens here
+    safely default: self do
+      raise NoMethodError.new("undefined method `#{method}' for nil:NilClass (¯\\_(ツ)_/¯)")
+    end
+  end
+
+  def respond_to_missing?(method, *args, &block)
+    !WHITELIST.include?(method.to_s)
   end
 end
 
